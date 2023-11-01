@@ -1,6 +1,9 @@
 #include <zmq.hpp>
+
 #include "LatencyHistogram.h"
+
 #include "LatencyHistogramEditor.h"
+
 
 LatencyHistogram::LatencyHistogram()
     : GenericProcessor("Latency Histogram"),
@@ -13,11 +16,15 @@ LatencyHistogram::LatencyHistogram()
     addIntParameter(Parameter::STREAM_SCOPE, "ttl_b", "The second TTL line to measure", 2, 1, 16);
 }
 
+
+
 LatencyHistogram::~LatencyHistogram()
 {
     socket.close();
     context.close();
 }
+
+
 
 AudioProcessorEditor* LatencyHistogram::createEditor()
 {
@@ -31,6 +38,7 @@ void LatencyHistogram::updateSettings()
     settings.update(getDataStreams()); // resets settings to default values
 }
 
+
 bool LatencyHistogram::startAcquisition()
 {
 	for (auto stream : getDataStreams())
@@ -40,6 +48,7 @@ bool LatencyHistogram::startAcquisition()
 
     return true;
 }
+
 
 void LatencyHistogram::process(AudioBuffer<float>& buffer)
 {
@@ -58,16 +67,6 @@ void LatencyHistogram::process(AudioBuffer<float>& buffer)
     checkForEvents(true);
 }
 
-uint64 LatencyHistogram::getTimestamp(int channel) {
-    if (getNumSamples(channel) > 0)
-    {
-        return getTimestamp(channel, 0);
-    }
-    else
-    {
-        return 0;
-    }
-}
 
 void LatencyHistogram::handleTTLEvent(TTLEventPtr event)
 {
@@ -110,3 +109,5 @@ void LatencyHistogram::handleTTLEvent(TTLEventPtr event)
 
     
 }
+
+

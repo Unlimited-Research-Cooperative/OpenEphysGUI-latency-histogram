@@ -59,7 +59,6 @@ public:
 		Called automatically for each received event whenever checkForEvents() is called from
 		the plugin's process() method */
 	void handleTTLEvent(TTLEventPtr event) override;
-    uint64 getTimestamp(int channel);
 
 private:
     zmq::context_t context;
