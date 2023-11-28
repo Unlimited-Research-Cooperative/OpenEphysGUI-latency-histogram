@@ -50,6 +50,8 @@ public:
 	/** Called when acquisition begins */
 	bool startAcquisition() override;
 
+    juce::uint64 getTimestamp(int channel, int sampleIndex);
+
 	/** Defines the functionality of the processor.
 		The process method is called every time a new data buffer is available.
 		Visualizer plugins typically use this method to send data to the canvas for display purposes */

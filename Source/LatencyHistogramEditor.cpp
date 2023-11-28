@@ -30,6 +30,12 @@ void LatencyHistogramEditor::updateSettings()
     selectedStreamHasChanged();
 }
 
+juce::uint64 LatencyHistogram::getTimestamp(int channel, int sampleIndex) {
+    // Your logic here
+    // Return a juce::uint64 value
+}
+
+
 void LatencyHistogramEditor::selectedStreamHasChanged()
 {
     // Updating visibility of histograms

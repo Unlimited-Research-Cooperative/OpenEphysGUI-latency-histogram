@@ -52,22 +52,19 @@ void LatencyHistogram::process(AudioBuffer<float>& buffer)
     // Send the timestamp via ZMQ
     zmq::message_t message(timestampStr.size());
     memcpy(message.data(), timestampStr.data(), timestampStr.size());
-    socket.send(message);
+    socket.send(message, zmq::send_flags::none);
+
 
     // Check for events
     checkForEvents(true);
 }
 
 uint64 LatencyHistogram::getTimestamp(int channel) {
-    if (getNumSamples(channel) > 0)
-    {
-        return getTimestamp(channel, 0);
-    }
-    else
-    {
-        return 0;
-    }
+    // Your logic to get the timestamp for a given channel
+    // This needs to be filled in based on your specific implementation
 }
+
+// Assuming you have an overload like this:
 
 void LatencyHistogram::handleTTLEvent(TTLEventPtr event)
 {
